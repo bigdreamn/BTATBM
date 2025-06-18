@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bảng điều khiển</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="container">
+    <h2>Xin chào {{ current_user.id }}!</h2>
+    <form method="POST" action="/send" enctype="multipart/form-data">
+        <label>Gửi đến:</label>
+        <select name="receiver">
+            {% for u in users %}
+            <option value="{{ u }}">{{ u }}</option>
+            {% endfor %}
+        </select>
+        <label>Tin nhắn:</label>
+        <input name="message" placeholder="Nội dung tin nhắn">
+        <label>File đính kèm:</label>
+        <input type="file" name="file">
+        <button>📤 Gửi</button>
+    </form>
+    <a href='/inbox'>📥 Hộp thư đến</a> | <a href='/logout'>🚪 Đăng xuất</a>
+</div>
+</body>
+</html>
